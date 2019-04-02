@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Msint</title>
+	<meta charset="utf-8">
+	<link rel="manifest" href="../config/manifest.json">
+	<link rel="stylesheet" type="text/css" href="../css/css_Msint.css">
+	<script type="text/javascript" src="../js/js_Msint.js"></script>
+</head>
+<body>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<input name='temperatura' type="text" style="width: 100%" tabindex="1"
+						onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this)" maxlength="5"/>
+				</td>
+				<td rowspan="2">
+					<input type="button" tabindex="3" value="Registra medições" onclick="gravarMedicoes()"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<input type="radio" tabindex="2" name="muco" value="Muito viscoso">Muito viscoso</input>
+						<input type="radio" tabindex="2" name="muco" value="Normal" checked>Normal</input>
+						<input type="radio" tabindex="2" name="muco" value="Pouco viscoso">Pouco viscoso</input>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<input type="button" value="Listar medições" onclick="lista()"/>
+	<!-- <h1 onclick="salva(['M', 'muco'])">teste - M</h1>
+	<h1 onclick="lista()">lista</h1>
+	<h1 onclick="limpa()">limpa</h1> -->
+</body>
+</html>

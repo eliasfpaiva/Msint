@@ -1,0 +1,6 @@
+{
+  "short_name": "Msint",
+  "name": "Msint",
+  "permissions": ["storage"],
+  "start_url": "http://localhost/index.html?launcher=true"
+}
