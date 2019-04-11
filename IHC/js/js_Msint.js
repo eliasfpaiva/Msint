@@ -11,6 +11,18 @@ function validaTemperatura(campo) {
 	return true;
 }
 
+function validaData() {
+	
+}
+
+function validaColeta() {
+	if(!validaTemperatura(document.getElementById('temperatura')))
+		return false;
+
+	if(!validaData())
+		return false;
+}
+
 function validaNumero(evt) {
 	var campo = evt.target;
 
@@ -54,7 +66,7 @@ function gravarMedicoes(){
 	var muco = getMucoSelecionado();
 	
 	
-	if(validaTemperatura(document.getElementById('temperatura')))
+	if(validaColeta())
 		salva([data, temperatura, muco]);
 }
 
