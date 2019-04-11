@@ -1,7 +1,28 @@
 body{
-	background-color: pink;
+	/* background-color: #ffefffc4; */
+	margin: 0%;
 }
 
 h1{
 	color: red;
+}
+
+.NewHead{
+width: auto;
+background-color: #ffffff;
+padding: 5px;
+}
+
+.buttonO{
+	background-color: #f4ddffc4;
+	border-color: #f4ddffc4;
+	border-radius: 20px;
+}
+
+input{
+	border-radius: 5px;
+}
+
+div{
+	color:#12021a;
 }
