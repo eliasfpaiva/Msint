@@ -2,7 +2,13 @@ function validaTemperatura(campo) {
 	if(campo.value > 42){
 		alert('Temperatura muito elevada!');
 		campo.value = '';
+		return false;
+	} else if(campo.value < 32){
+		alert('Temperatura muito baixa!');
+		campo.value = '';
+		return false;
 	}
+	return true;
 }
 
 function validaNumero(evt) {
@@ -21,17 +27,35 @@ function subString(string, inicio, fim) {
 
 	return subString;
 }
+function getMucoSelecionado(){
+	var mucos = document.getElementsByName('muco');
+	var mucoSelecionado = "";
+	mucos.forEach(
+		function(muco){
+			if(muco.checked)
+				mucoSelecionado = muco.value;
+		}
+	);
+	return mucoSelecionado;
+}
+
+function montaData(){
+	let data = new Date();
+	let dia = data.getDay();
+	let mes = data.getMonth() + 1 // somo 1 pois no JavaScript os meses vão de 0 a 11
+	let ano = data.getFullYear();
+
+	return dia + '/' + mes + '/' + ano;
+}
 
 function gravarMedicoes(){
-	var muco = document.getElementsByName('muco');
+	var data = montaData(); 
 	var temperatura = document.getElementsByName('temperatura')[0].value;
-	var mucoSelecionado;
-
-	for(i=0; i<3; i++)
-		if(muco[i].checked)
-			mucoSelecionado = muco[i].value;
-
-	salva([temperatura, mucoSelecionado])
+	var muco = getMucoSelecionado();
+	
+	
+	if(validaTemperatura(document.getElementById('temperatura')))
+		salva([data, temperatura, muco]);
 }
 
 function salva(dado) {
