@@ -1,5 +1,13 @@
-function validaTemperatura(campo) {
-	if(campo.value > 42){
+function validaTemperatura(campo, podeVazia) {
+	if(campo.value === ""){
+		if(podeVazia)
+			return true;
+		else{
+			alert('Temperatura não informada!');
+			campo.value = '';
+			return false;
+		}
+	}else if(campo.value > 42){
 		alert('Temperatura muito elevada!');
 		campo.value = '';
 		return false;
@@ -12,15 +20,28 @@ function validaTemperatura(campo) {
 }
 
 function validaData() {
-	
+	if(localStorage.length === 0)
+		return true;
+
+	//As coletas deve ser feitas em dias diferentes
+	const dataUltimacoleta = localStorage.getItem(localStorage.length - 1).split(',')[0];
+	const dataHoje = montaData();
+	if(dataUltimacoleta === dataHoje){
+		alert('Já foi realizada uma coleta hoje, apenas uma coleta por dia é permitida!');
+		return false;
+	}
+
+	return true;
 }
 
 function validaColeta() {
-	if(!validaTemperatura(document.getElementById('temperatura')))
+	if(!validaTemperatura(document.getElementById('temperatura'), false))
 		return false;
 
 	if(!validaData())
 		return false;
+
+	return true;
 }
 
 function validaNumero(evt) {
@@ -62,12 +83,15 @@ function montaData(){
 
 function gravarMedicoes(){
 	var data = montaData(); 
-	var temperatura = document.getElementsByName('temperatura')[0].value;
+	var temperatura = document.getElementById('temperatura').value;
 	var muco = getMucoSelecionado();
-	
-	
-	if(validaColeta())
-		salva([data, temperatura, muco]);
+	var primeiroDia = document.getElementById('primeiroDia').checked;
+		
+	if(validaColeta()){
+		salva([data, temperatura, muco, primeiroDia]);
+		alert('Dados salvos');
+		document.location.reload();
+	}
 }
 
 function salva(dado) {
