@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Msint</title>
 	<meta charset="utf-8">
@@ -7,16 +8,25 @@
 	<link rel="stylesheet" type="text/css" href="../css/css_Msint.css">
 	<script type="text/javascript" src="../js/js_Msint.js"></script>
 </head>
+
 <body>
+
+	<div class="NewHead">
+
+		<img src="../Logo.png" width="20%">
+
+	</div>
+
 	<table>
 		<tbody>
 			<tr>
 				<td>
 					<input name='temperatura' type="text" style="width: 100%" tabindex="1"
-						onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this)" maxlength="5"/>
+						onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this)"
+						maxlength="5" />
 				</td>
 				<td rowspan="2">
-					<input type="button" tabindex="3" value="Registra medições" onclick="gravarMedicoes()"/>
+					<input class= buttonO type="button" tabindex="3" value="  Registra medições  " onclick="gravarMedicoes()" />
 				</td>
 			</tr>
 			<tr>
@@ -30,10 +40,11 @@
 			</tr>
 		</tbody>
 	</table>
-	
-	<input type="button" value="Listar medições" onclick="lista()"/>
+
+	<input class= buttonO type="button" value="Listar medições" onclick="lista()" />
 	<!-- <h1 onclick="salva(['M', 'muco'])">teste - M</h1>
 	<h1 onclick="lista()">lista</h1>
 	<h1 onclick="limpa()">limpa</h1> -->
 </body>
+
 </html>
