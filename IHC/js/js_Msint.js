@@ -1,8 +1,47 @@
-function validaTemperatura(campo) {
-	if(campo.value > 42){
+function validaTemperatura(campo, podeVazia) {
+	if(campo.value === ""){
+		if(podeVazia)
+			return true;
+		else{
+			alert('Temperatura não informada!');
+			campo.value = '';
+			return false;
+		}
+	}else if(campo.value > 42){
 		alert('Temperatura muito elevada!');
 		campo.value = '';
+		return false;
+	} else if(campo.value < 32){
+		alert('Temperatura muito baixa!');
+		campo.value = '';
+		return false;
 	}
+	return true;
+}
+
+function validaData() {
+	if(localStorage.length === 0)
+		return true;
+
+	//As coletas deve ser feitas em dias diferentes
+	const dataUltimacoleta = localStorage.getItem(localStorage.length - 1).split(',')[0];
+	const dataHoje = montaData();
+	if(dataUltimacoleta === dataHoje){
+		alert('Já foi realizada uma coleta hoje, apenas uma coleta por dia é permitida!');
+		return false;
+	}
+
+	return true;
+}
+
+function validaColeta() {
+	if(!validaTemperatura(document.getElementById('temperatura'), false))
+		return false;
+
+	if(!validaData())
+		return false;
+
+	return true;
 }
 
 function validaNumero(evt) {
@@ -21,17 +60,38 @@ function subString(string, inicio, fim) {
 
 	return subString;
 }
+function getMucoSelecionado(){
+	var mucos = document.getElementsByName('muco');
+	var mucoSelecionado = "";
+	mucos.forEach(
+		function(muco){
+			if(muco.checked)
+				mucoSelecionado = muco.value;
+		}
+	);
+	return mucoSelecionado;
+}
+
+function montaData(){
+	let data = new Date();
+	let dia = data.getDay();
+	let mes = data.getMonth() + 1 // somo 1 pois no JavaScript os meses vão de 0 a 11
+	let ano = data.getFullYear();
+
+	return dia + '/' + mes + '/' + ano;
+}
 
 function gravarMedicoes(){
-	var muco = document.getElementsByName('muco');
-	var temperatura = document.getElementsByName('temperatura')[0].value;
-	var mucoSelecionado;
-
-	for(i=0; i<3; i++)
-		if(muco[i].checked)
-			mucoSelecionado = muco[i].value;
-
-	salva([temperatura, mucoSelecionado])
+	var data = montaData(); 
+	var temperatura = document.getElementById('temperatura').value;
+	var muco = getMucoSelecionado();
+	var primeiroDia = document.getElementById('primeiroDia').checked;
+		
+	if(validaColeta()){
+		salva([data, temperatura, muco, primeiroDia]);
+		alert('Dados salvos');
+		document.location.reload();
+	}
 }
 
 function salva(dado) {
