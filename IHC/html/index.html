@@ -21,12 +21,11 @@
 		<tbody>
 			<tr>
 				<td>
-					<input name='temperatura' type="text" style="width: 100%" tabindex="1"
-						onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this)"
-						maxlength="5" />
+					<input name='temperatura' id='temperatura' type="text" style="width: 100%" tabindex="1"
+						onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this, true)" maxlength="5"/>
 				</td>
-				<td rowspan="2">
-					<input class= buttonO type="button" tabindex="3" value="  Registra medições  " onclick="gravarMedicoes()" />
+				<td rowspan="3">
+					<input type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()"/>
 				</td>
 			</tr>
 			<tr>
@@ -38,13 +37,14 @@
 					</div>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<label>É o primeiro dia da menstruação?</label><input name="primeiroDia" id="primeiroDia" type="checkbox" tabindex="3"/>
+				</td>
+			</tr>
 		</tbody>
-	</table>
-
-	<input class= buttonO type="button" value="Listar medições" onclick="lista()" />
-	<!-- <h1 onclick="salva(['M', 'muco'])">teste - M</h1>
-	<h1 onclick="lista()">lista</h1>
-	<h1 onclick="limpa()">limpa</h1> -->
+	</table>	
+	<input type="button" value="Listar medições" onclick="lista()"/>
+	<input type="button" value="Limpar medições" onclick="limpa()"/>
 </body>
-
 </html>
