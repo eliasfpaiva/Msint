@@ -24,12 +24,12 @@ function validaData() {
 		return true;
 
 	//As coletas deve ser feitas em dias diferentes
-	const dataUltimacoleta = localStorage.getItem(localStorage.length - 1).split(',')[0];
-	const dataHoje = montaData();
-	if(dataUltimacoleta === dataHoje){
-		alert('Já foi realizada uma coleta hoje, apenas uma coleta por dia é permitida!');
-		return false;
-	}
+	// const dataUltimacoleta = localStorage.getItem(localStorage.length - 1).split(',')[0];
+	// const dataHoje = montaData();
+	// if(dataUltimacoleta === dataHoje){
+	// 	alert('Já foi realizada uma coleta hoje, apenas uma coleta por dia é permitida!');
+	// 	return false;
+	// }
 
 	return true;
 }
@@ -81,6 +81,15 @@ function montaData(){
 	return dia + '/' + mes + '/' + ano;
 }
 
+function avaliarFertilidade() {
+	var somaTemperaturas = 0;
+	
+	for(i = 0; i < localStorage.length; i++){
+			somaTemperaturas += Number(localStorage.getItem(i).split(",")[1]);
+	}
+	alert(somaTemperaturas/localStorage.length);
+}
+
 function gravarMedicoes(){
 	var data = montaData(); 
 	var temperatura = document.getElementById('temperatura').value;
@@ -90,6 +99,10 @@ function gravarMedicoes(){
 	if(validaColeta()){
 		salva([data, temperatura, muco, primeiroDia]);
 		alert('Dados salvos');
+
+		if(localStorage.length > 3)
+			avaliarFertilidade();
+
 		document.location.reload();
 	}
 }
