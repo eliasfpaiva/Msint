@@ -6,56 +6,123 @@
 	<meta charset="utf-8">
 	<link rel="manifest" href="../config/manifest.json">
 	<link rel="stylesheet" type="text/css" href="../css/css_Msint.css">
+	<link rel="stylesheet" type="text/css" href="../css/calendar.css">
 	<script type="text/javascript" src="../js/js_Msint.js"></script>
-	
+	<script type="text/javascript" src="../js/js_calendar.js"></script>
+	<script type="text/javascript" src="../js/jQuery.js"></script>
+	<script type="text/javascript" src="../js/FinalQ.js"></script>
+	<script type="text/javascript" src="../js/OtherQ.js"></script>
+
+
 </head>
 
- <header class="NewHead">
-		<img src="../imagens/Logo.png" width="20%" alt="Nome e logomarca (Women's health)">
-	</header>
-	
+<header class="NewHead">
+	<ul>
 
-<body>
-		<ul>
-			
-				<li><a href="sobre.html" target="_self">Sobre</a></li>
-				<li><a class= "active" href="calendario.html" target="_self">Calendário</a></li>
-				<li><a href="index.html" target="_self">Home</a></li>
-		</ul>
-	
+		<li><a href="sobre.html" target="_self">Sobre</a></li>
+		<li><a class="active" href="calendario.html" target="_self">Calendário</a></li>
+		<li><a href="index.html" target="_self">Home</a></li>
+	</ul>
+	<img src="../imagens/Logo.png" width="20%" style="
+    position: relative;
+    left: 30px;
+" alt="Nome e logomarca (Women's health)">
 
-		<table>
-				<tbody>
-					<tr>
-						<td class="formCalendário">
-							Qual é sua temperatura Basal de hoje? <input name='temperatura' id='temperatura' type="text" style="width: 10%" tabindex="1"
-								onkeypress="validaNumero(event)" onkeyup="validaNumero(event)" onblur="validaTemperatura(this, true)" maxlength="5"/>
-						</td>
-						<!-- <td rowspan="3">
+
+</header>
+
+<div id="formulario">
+	<div style="text-align: center;">
+		<h1 style="display: inline;">
+			Dados
+		</h1>
+	</div>
+	<div style="display: block; top: 130px;">
+
+		<!-- <table>
+			<tbody>
+				<tr> -->
+		<!-- <td class="formCalendário"> -->
+		<p>Data: <input type="date" id="calendario" /></p>
+		<p> Qual é sua temperatura Basal? <input name='temperatura' id='temperatura' type="text"
+				style="width: 10%" tabindex="1" onkeypress="validaNumero(event)" onkeyup="validaNumero(event)"
+				onblur="validaTemperatura(this, true)" maxlength="5" /> </p>
+
+	</div>
+	<!-- </td> -->
+	<!-- <td rowspan="3">
 							<input type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()"/>
 						</td>-->
-					</tr>
-					<tr>
-						<td class="formCalendário">
-							<label>É o primeiro dia da menstruação?    </label> Sim<input name="primeiroDia" id="primeiroDia" type="checkbox" tabindex="3"/>
-						</td>
-					</tr>
-					<tr>					
-						<td class="formCalendário">
-								Qual a viscosidade do muco?
-							<div>							
-								<input type="radio" tabindex="2" name="muco" value="Muito viscoso">Muito viscoso</input>
-								<input type="radio" tabindex="2" name="muco" value="Normal" checked>Normal</input>
-								<input type="radio" tabindex="2" name="muco" value="Pouco viscoso">Pouco viscoso</input>
-							</div>
-						</td>
-					</tr>
-					
-				</tbody>
-			</table>	
-			<input class="bt" type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()"/>
-			<input class="bt" type="button" value="Listar medições" onclick="lista()"/>
-			<input class="bt" type="button" value="Limpar medições" onclick="limpa()"/>
-	
+	<!-- </tr> -->
+	<!-- <tr> -->
+	<!-- <td class="formCalendário"> -->
+
+	<label>É o primeiro dia da menstruação? </label> Sim<input name="primeiroDia" id="primeiroDia" type="radio"
+		tabindex="3" />
+	<!-- </td> -->
+	<!-- </tr> -->
+	<!-- <tr> -->
+
+	<p><label> Qual a viscosidade do muco?</label>
+		<div>
+			<p><input type="radio" tabindex="2" name="muco" value="Muito viscoso">Muito viscoso</input>
+				<input type="radio" tabindex="2" name="muco" value="Normal" checked>Normal</input>
+				<input type="radio" tabindex="2" name="muco" value="Pouco viscoso">Pouco viscoso</input></p>
+		</div>
+	</p>
+
+	<!-- </td>
+				</tr>
+
+			</tbody>
+		</table> -->
+	<input class="bt" type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()" />
+	<input class="bt" type="button" value="Resultado" onclick="avaliarFertilidade()" />
+
+</div>
+
+
+<div class="card">
+	<h1 class="txt">
+		Período
+	</h1>
+	<h2 class="card-header" id="monthAndYear"></h2>
+	<table class="table table-bordered table-responsive-sm" id="calendar">
+		<thead style="background-color: #c075fd;">
+			<!-- <tr>
+				<th>D</th>
+				<th>S</th>
+				<th>T</th>
+				<th>Q</th>
+				<th>Q</th>
+				<th>S</th>
+				<th>S</th>
+			</tr> -->
+		</thead>
+
+		<tbody id="calendar-body">
+
+		</tbody>
+	</table>
+
+	<div class="form-inline">
+
+		<button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Anterior</button>
+
+		<button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Próximo</button>
+	</div>
+	<br />
+	<form class="form-inline">
+		<label class="lead mr-2 ml-2" for="month"></label>
+		<class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+
+			<label for="year"></label>
+			<class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+
+	</form>
+</div>
+
+
 </body>
+
 </html>
