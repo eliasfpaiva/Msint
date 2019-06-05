@@ -86,7 +86,7 @@ function avaliarFertilidade() {
 		var somaTemperaturas = 0;
 		var CicloI;
 		var CicloF;
-		var dia = localStorage.length * 2.5;
+		var dia = localStorage.length * 1.5;
 		var count = 0;
 		var novo;
 		for (i = 0; i < localStorage.length; i++) {
@@ -125,7 +125,7 @@ for(var i=0;i<l;i++){
 	var tr=table.rows[i];
 	var teste = tr.childNodes;
 	for(var j=0;j<verdade;j++){
-if(Number(teste[j].innerHTML)>novo+verdade){
+if(Number(teste[j].innerHTML)>dia+verdade){
 if(valida >0){teste[j].style.backgroundColor = "purple"; valida--;}
 	
 }
@@ -139,7 +139,7 @@ if(valida >0){teste[j].style.backgroundColor = "purple"; valida--;}
 		console.log((CicloI));
 		console.log((CicloF));
 		alert("Temperatura média é :" + somaTemperaturas / localStorage.length);
-		alert("Periodo baseado no ciclo, sendo 1 o primeiro de do ciclo colorido")
+		alert("Periodo baseado no ciclo, sendo 1 o primeiro dia do ciclo e o período fértil foi colorido")
 	}
 	else {
 		alert("Informe mais " + 5 - localStorage.length + "dados!")

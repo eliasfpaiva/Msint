@@ -31,65 +31,66 @@
 
 </header>
 
-<div id="formulario">
-	<div style="text-align: center;">
-		<h1 style="display: inline;">
-			Dados
-		</h1>
-	</div>
-	<div style="display: block; top: 130px;">
+<body>
+	<div id="formulario">
+		<div style="text-align: center;">
+			<h1 style="display: inline;">
+				Dados
+			</h1>
+		</div>
+		<div style="display: block; top: 130px;">
 
-		<!-- <table>
+			<!-- <table>
 			<tbody>
 				<tr> -->
-		<!-- <td class="formCalendário"> -->
-		<p>Data: <input type="date" id="calendario" /></p>
-		<p> Qual é sua temperatura Basal? <input name='temperatura' id='temperatura' type="text"
-				style="width: 10%" tabindex="1" onkeypress="validaNumero(event)" onkeyup="validaNumero(event)"
-				onblur="validaTemperatura(this, true)" maxlength="5" /> </p>
+			<!-- <td class="formCalendário"> -->
+			<p>Data: <input type="date" id="calendario" /></p>
+			<p> Qual é sua temperatura Basal? <input name='temperatura' id='temperatura' type="text" style="width: 10%"
+					tabindex="1" onkeypress="validaNumero(event)" onkeyup="validaNumero(event)"
+					onblur="validaTemperatura(this, true)" maxlength="5" /> </p>
 
-	</div>
-	<!-- </td> -->
-	<!-- <td rowspan="3">
+		</div>
+		<!-- </td> -->
+		<!-- <td rowspan="3">
 							<input type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()"/>
 						</td>-->
-	<!-- </tr> -->
-	<!-- <tr> -->
-	<!-- <td class="formCalendário"> -->
+		<!-- </tr> -->
+		<!-- <tr> -->
+		<!-- <td class="formCalendário"> -->
 
-	<label>É o primeiro dia da menstruação? </label> Sim<input name="primeiroDia" id="primeiroDia" type="radio"
-		tabindex="3" />
-	<!-- </td> -->
-	<!-- </tr> -->
-	<!-- <tr> -->
+		<p><label>É o primeiro dia da menstruação? </label> Sim<input name="primeiroDia" id="primeiroDia" type="radio"
+			tabindex="3" /></p>
+		<!-- </td> -->
+		<!-- </tr> -->
+		<!-- <tr> -->
 
-	<p><label> Qual a viscosidade do muco?</label>
-		<div>
-			<p><input type="radio" tabindex="2" name="muco" value="Muito viscoso">Muito viscoso</input>
-				<input type="radio" tabindex="2" name="muco" value="Normal" checked>Normal</input>
-				<input type="radio" tabindex="2" name="muco" value="Pouco viscoso">Pouco viscoso</input></p>
-		</div>
-	</p>
+		<p><label> Qual a viscosidade do muco?</label>
+			<div>
+				<p><input type="radio" tabindex="2" name="muco" value="Muito viscoso">Muito viscoso</input>
+					<input type="radio" tabindex="2" name="muco" value="Normal" checked>Normal</input>
+					<input type="radio" tabindex="2" name="muco" value="Pouco viscoso">Pouco viscoso</input></p>
+			</div>
+		</p>
 
-	<!-- </td>
+		<!-- </td>
 				</tr>
 
 			</tbody>
 		</table> -->
-	<input class="bt" type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()" />
-	<input class="bt" type="button" value="Resultado" onclick="avaliarFertilidade()" />
+		<input class="bt" type="button" tabindex="4" value="Registra medições" onclick="gravarMedicoes()" />
+		<input class="bt" type="button" value="Resultado" onclick="avaliarFertilidade()" />
 
-</div>
+	</div>
 
 
-<div class="card">
-	<h1 class="txt">
-		Período
-	</h1>
-	<h2 class="card-header" id="monthAndYear"></h2>
-	<table class="table table-bordered table-responsive-sm" id="calendar">
-		<thead style="background-color: #c075fd;">
-			<!-- <tr>
+	<div class="card">
+		<h1 class="txt">
+			Período
+		</h1>
+		<h2 class="card-header" id="monthAndYear"></h2>
+		<table class="table table-bordered table-responsive-sm" id="calendar">
+			<thead style="background-color: #c075fd;">
+				<!-- <tr>
 				<th>D</th>
 				<th>S</th>
 				<th>T</th>
@@ -98,29 +99,29 @@
 				<th>S</th>
 				<th>S</th>
 			</tr> -->
-		</thead>
+			</thead>
 
-		<tbody id="calendar-body">
+			<tbody id="calendar-body">
 
-		</tbody>
-	</table>
+			</tbody>
+		</table>
 
-	<div class="form-inline">
+		<div class="form-inline">
 
-		<button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Anterior</button>
+			<button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Anterior</button>
 
-		<button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Próximo</button>
+			<button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Próximo</button>
+		</div>
+		<br />
+		<form class="form-inline">
+			<label class="lead mr-2 ml-2" for="month"></label>
+			<class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+
+				<label for="year"></label>
+				<class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+
+		</form>
 	</div>
-	<br />
-	<form class="form-inline">
-		<label class="lead mr-2 ml-2" for="month"></label>
-		<class="form-control col-sm-4" name="month" id="month" onchange="jump()">
-
-			<label for="year"></label>
-			<class="form-control col-sm-4" name="year" id="year" onchange="jump()">
-
-	</form>
-</div>
 
 
 </body>
